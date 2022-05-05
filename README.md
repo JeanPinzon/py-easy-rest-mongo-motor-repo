@@ -49,8 +49,7 @@ pyrApp = App(config, repo=repo)
 def init(app, loop):
     mongo_db_instance = AsyncIOMotorClient("mongodb://localhost:27017/db")
     db = mongo_db_instance.get_default_database()
-    collection = db["default"]
-    repo.set_db_collection(collection)
+    repo.set_db_connection(db)
 
 
 pyrApp.app.run(
