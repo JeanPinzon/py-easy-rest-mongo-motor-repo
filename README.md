@@ -5,7 +5,7 @@
 
 # py-easy-rest-mongo-motor-repo
 
-Cache lib to use with [py-easy-rest](https://github.com/JeanPinzon/py-easy-rest)
+Mongo repo to use with [py-easy-rest](https://github.com/JeanPinzon/py-easy-rest)
 
 
 ## Getting Started
