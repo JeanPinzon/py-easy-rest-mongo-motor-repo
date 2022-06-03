@@ -5,7 +5,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setuptools.setup(
     name="py-easy-rest-mongo-motor-repo",
-    version="0.1.4",
+    version="0.1.5",
     author="Jean Pinzon",
     author_email="jean.pinzon1@gmail.com",
     description="Mongo repo to use with Py Easy REST",
