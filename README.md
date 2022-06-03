@@ -24,8 +24,9 @@ Mongo repo to use with [py-easy-rest](https://github.com/JeanPinzon/py-easy-rest
 #main.py
 from motor.motor_asyncio import AsyncIOMotorClient
 
-from py_easy_rest.server import App
-from py_easy_rest_mongo_motor_repo.mongo_motor_repo import MongoRepo
+from py_easy_rest import PYRSanicAppBuilder
+from py_easy_rest.service import PYRService
+from py_easy_rest_mongo_motor_repo import PYRMongoRepo
 
 
 config = {
@@ -41,18 +42,19 @@ config = {
     }]
 }
 
-repo = MongoRepo()
+repo = PYRMongoRepo()
 
-pyrApp = App(config, repo=repo)
+service = PYRService(api_config_mock, repo=repo)
+sanic_app = PYRSanicAppBuilder.build(api_config_mock, service)
 
-@pyrApp.app.listener('before_server_start')
+@sanic_app.listener('before_server_start')
 def init(app, loop):
     mongo_db_instance = AsyncIOMotorClient("mongodb://localhost:27017/db")
     db = mongo_db_instance.get_default_database()
     repo.set_db_connection(db)
 
 
-pyrApp.app.run(
+sanic_app.run(
     host='0.0.0.0',
     port=8000,
     debug=True,

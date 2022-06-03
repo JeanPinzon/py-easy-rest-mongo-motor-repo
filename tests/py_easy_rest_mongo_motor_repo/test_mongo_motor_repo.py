@@ -5,7 +5,7 @@ from unittest.mock import Mock
 
 from bson.objectid import ObjectId
 
-from py_easy_rest_mongo_motor_repo.mongo_motor_repo import MongoRepo
+from py_easy_rest_mongo_motor_repo import PYRMongoRepo
 
 
 class MockMongoCursor():
@@ -44,10 +44,10 @@ class MockMongoInsertResult():
         self.inserted_id = inserted_id
 
 
-class TestMongoRepo(AsyncTestCase):
+class TestPYRMongoRepo(AsyncTestCase):
 
     def setUp(self):
-        self._mongo_repo = MongoRepo()
+        self._mongo_repo = PYRMongoRepo()
 
     @pytest.mark.asyncio
     async def test_should_get_return_correct_document(self):
